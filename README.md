@@ -1,2 +1,2 @@
 # vue-course
-Excersices from vue course
+Lessons from vue course
