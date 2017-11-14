@@ -10,6 +10,14 @@ export default {
         return {
             type: this.$route.params.type
         }
+    },
+    watch:{
+        '$route':'changeType'
+    },
+    methods:{
+        changeType(){
+            this.type = this.$route.params.type
+        }
     }
 }
 </script>
