@@ -1,6 +1,6 @@
 <template>
 <div class="">
-    Type: {{type}}
+    {{items}}
 </div>
 </template>
 
@@ -8,16 +8,34 @@
 export default {
     data() {
         return {
-            type: this.$route.params.type
+            type: this.$route.params.type,
+            items: []
         }
     },
     watch:{
-        '$route':'changeType'
+        '$route':'fetchItems'
     },
     methods:{
-        changeType(){
-            this.type = this.$route.params.type
+        fetchItems(){
+            this.items = [];
+            this.type  = this.$route.params.type;
+            let initia_ids = [1, 13, 14];
+
+            for(let i in initia_ids){
+                let id = initia_ids[i];
+
+                fetch('https://swapi.co/api/'+ this.type +'/'+ id +'/', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(json => {
+                    this.items.push(json)
+                })
+            }
         }
+    },
+    created(){
+        this.fetchItems()
     }
 }
 </script>
