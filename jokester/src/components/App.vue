@@ -1,5 +1,5 @@
 <template>
 <div id="app">
-    Got Jokes?
+    Got Jokes? {{$store.state}}
 </div>
 </template>
